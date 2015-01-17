@@ -7,7 +7,9 @@ Mink: Is a stand alone library be used PHP to command the browser, be used in Se
 -Installation by using composer(dependency manager of PHP). See Page https://getcomposer.org/
 
 Step 1. You need PHP latest version installed in your computer. Please see Page http://php.net/manual/en/install.php
+
 Step 2. Create file composer.json in you project and put following dependencies to be install from the online repository:
+
 {
 	"require": {
 		"behat/behat": "2.4.*@stable", 
@@ -17,8 +19,12 @@ Step 2. Create file composer.json in you project and put following dependencies 
 		"behat/mink-selenium2-driver": "*"
 	}
 }
+
 Step 3: Go to the command line into you project and type <composer install> then enter
+
+
 Step 4: open note pad and type following and save it to as <behat.yml>
+
 
 default:
 paths:
@@ -29,7 +35,9 @@ Behat\MinkExtension\Extension:
 goutte: ~
 selenium2: ~
 
+
 Step: 5: go to the project folder in the command line and type php bin/behat init then enter 
+
 
 yaaap! behat will be setup in you project.
 
