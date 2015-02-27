@@ -22,7 +22,10 @@ public class UsingGoogleSearchPage {
         GoogleSearchPage page = PageFactory.initElements(driver, GoogleSearchPage.class);
 
         page.typeUserName("Asaduzaman");
+        System.out.println("I type userName");
         page.typePassword("934875943");
+        System.out.println("I type password");
         page.hitOntheButton();
+        System.out.println("I hit on the button");
     }
 } 

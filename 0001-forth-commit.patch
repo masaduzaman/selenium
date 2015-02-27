@@ -1,0 +1,477 @@
+From 2c0c9bae9f8c253217c239e3bf5b20b516063fec Mon Sep 17 00:00:00 2001
+From: Your Name Here <mdrubel2001@gmail.com>
+Date: Sat, 17 Jan 2015 01:57:51 -0500
+Subject: [PATCH] forth commit
+
+---
+ README.md                                          |   8 ++++
+ pageFactoryJavaSelenium/.classpath                 |  37 +++++++++++++++
+ pageFactoryJavaSelenium/.project                   |  23 +++++++++
+ .../.settings/org.eclipse.jdt.core.prefs           |   5 ++
+ .../.settings/org.eclipse.m2e.core.prefs           |   4 ++
+ pageFactoryJavaSelenium/README.md                  |  14 ++++++
+ pageFactoryJavaSelenium/pom.xml                    |  18 +++++++
+ .../java/pageObjectPattern/GoogleSearchPage.java   |  40 ++++++++++++++++
+ .../src/main/java/pageObjectPattern/MainPage.java  |  52 +++++++++++++++++++++
+ .../pageObjectPattern/UsingGoogleSearchPage.java   |  28 +++++++++++
+ .../target/classes/META-INF/MANIFEST.MF            |   5 ++
+ .../pageObject/pageObjectPattern/pom.properties    |   7 +++
+ .../maven/pageObject/pageObjectPattern/pom.xml     |  18 +++++++
+ .../pageObjectPattern/GoogleSearchPage.class       | Bin 0 -> 1390 bytes
+ .../classes/pageObjectPattern/MainPage.class       | Bin 0 -> 1219 bytes
+ .../pageObjectPattern/UsingGoogleSearchPage.class  | Bin 0 -> 1213 bytes
+ 16 files changed, 259 insertions(+)
+ create mode 100644 pageFactoryJavaSelenium/.classpath
+ create mode 100644 pageFactoryJavaSelenium/.project
+ create mode 100644 pageFactoryJavaSelenium/.settings/org.eclipse.jdt.core.prefs
+ create mode 100644 pageFactoryJavaSelenium/.settings/org.eclipse.m2e.core.prefs
+ create mode 100644 pageFactoryJavaSelenium/README.md
+ create mode 100644 pageFactoryJavaSelenium/pom.xml
+ create mode 100644 pageFactoryJavaSelenium/src/main/java/pageObjectPattern/GoogleSearchPage.java
+ create mode 100644 pageFactoryJavaSelenium/src/main/java/pageObjectPattern/MainPage.java
+ create mode 100644 pageFactoryJavaSelenium/src/test/java/pageObjectPattern/UsingGoogleSearchPage.java
+ create mode 100644 pageFactoryJavaSelenium/target/classes/META-INF/MANIFEST.MF
+ create mode 100644 pageFactoryJavaSelenium/target/classes/META-INF/maven/pageObject/pageObjectPattern/pom.properties
+ create mode 100644 pageFactoryJavaSelenium/target/classes/META-INF/maven/pageObject/pageObjectPattern/pom.xml
+ create mode 100644 pageFactoryJavaSelenium/target/classes/pageObjectPattern/GoogleSearchPage.class
+ create mode 100644 pageFactoryJavaSelenium/target/classes/pageObjectPattern/MainPage.class
+ create mode 100644 pageFactoryJavaSelenium/target/test-classes/pageObjectPattern/UsingGoogleSearchPage.class
+
+diff --git a/README.md b/README.md
+index 77e9d7c..6b4c0c9 100644
+--- a/README.md
++++ b/README.md
+@@ -7,7 +7,9 @@ Mink: Is a stand alone library be used PHP to command the browser, be used in Se
+ -Installation by using composer(dependency manager of PHP). See Page https://getcomposer.org/
+ 
+ Step 1. You need PHP latest version installed in your computer. Please see Page http://php.net/manual/en/install.php
++
+ Step 2. Create file composer.json in you project and put following dependencies to be install from the online repository:
++
+ {
+ 	"require": {
+ 		"behat/behat": "2.4.*@stable", 
+@@ -17,9 +19,13 @@ Step 2. Create file composer.json in you project and put following dependencies
+ 		"behat/mink-selenium2-driver": "*"
+ 	}
+ }
++
+ Step 3: Go to the command line into you project and type <composer install> then enter
++
++
+ Step 4: open note pad and type following and save it to as <behat.yml>
+ 
++
+ default:
+ paths:
+ features: features
+@@ -29,7 +35,9 @@ Behat\MinkExtension\Extension:
+ goutte: ~
+ selenium2: ~
+ 
++
+ Step: 5: go to the project folder in the command line and type php bin/behat init then enter 
+ 
++
+ yaaap! behat will be setup in you project.
+ 
+diff --git a/pageFactoryJavaSelenium/.classpath b/pageFactoryJavaSelenium/.classpath
+new file mode 100644
+index 0000000..01a37ea
+--- /dev/null
++++ b/pageFactoryJavaSelenium/.classpath
+@@ -0,0 +1,37 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<classpath>
++	<classpathentry kind="src" output="target/classes" path="src/main/java">
++		<attributes>
++			<attribute name="optional" value="true"/>
++			<attribute name="maven.pomderived" value="true"/>
++		</attributes>
++	</classpathentry>
++	<classpathentry excluding="**" kind="src" output="target/classes" path="src/main/resources">
++		<attributes>
++			<attribute name="maven.pomderived" value="true"/>
++		</attributes>
++	</classpathentry>
++	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
++		<attributes>
++			<attribute name="optional" value="true"/>
++			<attribute name="maven.pomderived" value="true"/>
++		</attributes>
++	</classpathentry>
++	<classpathentry excluding="**" kind="src" output="target/test-classes" path="src/test/resources">
++		<attributes>
++			<attribute name="maven.pomderived" value="true"/>
++		</attributes>
++	</classpathentry>
++	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5">
++		<attributes>
++			<attribute name="maven.pomderived" value="true"/>
++		</attributes>
++	</classpathentry>
++	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
++		<attributes>
++			<attribute name="maven.pomderived" value="true"/>
++		</attributes>
++	</classpathentry>
++	<classpathentry kind="lib" path="C:/Users/azaman/Desktop/JARFiles/selenium-server-standalone-2.44.0.jar"/>
++	<classpathentry kind="output" path="target/classes"/>
++</classpath>
+diff --git a/pageFactoryJavaSelenium/.project b/pageFactoryJavaSelenium/.project
+new file mode 100644
+index 0000000..eeff3b2
+--- /dev/null
++++ b/pageFactoryJavaSelenium/.project
+@@ -0,0 +1,23 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<projectDescription>
++	<name>pageObjectPattern</name>
++	<comment></comment>
++	<projects>
++	</projects>
++	<buildSpec>
++		<buildCommand>
++			<name>org.eclipse.jdt.core.javabuilder</name>
++			<arguments>
++			</arguments>
++		</buildCommand>
++		<buildCommand>
++			<name>org.eclipse.m2e.core.maven2Builder</name>
++			<arguments>
++			</arguments>
++		</buildCommand>
++	</buildSpec>
++	<natures>
++		<nature>org.eclipse.jdt.core.javanature</nature>
++		<nature>org.eclipse.m2e.core.maven2Nature</nature>
++	</natures>
++</projectDescription>
+diff --git a/pageFactoryJavaSelenium/.settings/org.eclipse.jdt.core.prefs b/pageFactoryJavaSelenium/.settings/org.eclipse.jdt.core.prefs
+new file mode 100644
+index 0000000..abec6ca
+--- /dev/null
++++ b/pageFactoryJavaSelenium/.settings/org.eclipse.jdt.core.prefs
+@@ -0,0 +1,5 @@
++eclipse.preferences.version=1
++org.eclipse.jdt.core.compiler.codegen.targetPlatform=1.5
++org.eclipse.jdt.core.compiler.compliance=1.5
++org.eclipse.jdt.core.compiler.problem.forbiddenReference=warning
++org.eclipse.jdt.core.compiler.source=1.5
+diff --git a/pageFactoryJavaSelenium/.settings/org.eclipse.m2e.core.prefs b/pageFactoryJavaSelenium/.settings/org.eclipse.m2e.core.prefs
+new file mode 100644
+index 0000000..f897a7f
+--- /dev/null
++++ b/pageFactoryJavaSelenium/.settings/org.eclipse.m2e.core.prefs
+@@ -0,0 +1,4 @@
++activeProfiles=
++eclipse.preferences.version=1
++resolveWorkspaceProjects=true
++version=1
+diff --git a/pageFactoryJavaSelenium/README.md b/pageFactoryJavaSelenium/README.md
+new file mode 100644
+index 0000000..310164c
+--- /dev/null
++++ b/pageFactoryJavaSelenium/README.md
+@@ -0,0 +1,14 @@
++There are two types of browser that we can run our test case
++1. Browser Controller such as FirefoxDriver, InternetExplorerDriver, ChromeDriver, SafariDriver, OperaDriver
++	-execution goes on the real browser
++2. Headless browser Emulator such as PhantomJS, htmlunitDriver
++	-execution goes in side the browser and it is very faster execution
++
++In this project I will be discussing about Page Factory features in the Selenium Platform
++-Main feature of Page Factory is List of WebElements used By @FindBy annotation in a specific class
++-Those WebElements would be initialize by PageFactory creating the object of the class
++-Then those WebElements would be invoked by the object name of the class.
++- See the project step by step for more details
++
++Note: This same project we will be able to run on the all browser mention above
++-for IE, chrome you need DrivderServer.exe
+diff --git a/pageFactoryJavaSelenium/pom.xml b/pageFactoryJavaSelenium/pom.xml
+new file mode 100644
+index 0000000..e5721ad
+--- /dev/null
++++ b/pageFactoryJavaSelenium/pom.xml
+@@ -0,0 +1,18 @@
++<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
++  <modelVersion>4.0.0</modelVersion>
++  <groupId>pageObject</groupId>
++  <artifactId>pageObjectPattern</artifactId>
++  <version>0.0.1-SNAPSHOT</version>
++  <dependencies>
++  	<dependency>
++  		<groupId>org.seleniumhq.selenium</groupId>
++  		<artifactId>selenium-java</artifactId>
++  		<version>2.42.2</version>
++  	</dependency>
++  	<dependency>
++  		<groupId>junit</groupId>
++  		<artifactId>junit</artifactId>
++  		<version>4.12-beta-1</version>
++  	</dependency>
++  </dependencies>
++</project>
+\ No newline at end of file
+diff --git a/pageFactoryJavaSelenium/src/main/java/pageObjectPattern/GoogleSearchPage.java b/pageFactoryJavaSelenium/src/main/java/pageObjectPattern/GoogleSearchPage.java
+new file mode 100644
+index 0000000..50039de
+--- /dev/null
++++ b/pageFactoryJavaSelenium/src/main/java/pageObjectPattern/GoogleSearchPage.java
+@@ -0,0 +1,40 @@
++package pageObjectPattern;
++
++import org.openqa.selenium.By;
++import org.openqa.selenium.support.FindBy;
++import org.openqa.selenium.support.How;
++import org.openqa.selenium.WebElement;
++
++public class GoogleSearchPage {
++    // The element is now looked up using the name attribute
++//    @FindBy(how = How.NAME, using = "q")
++//    private WebElement searchBox;
++
++	 @FindBy(how = How.XPATH, using = "//*[@id='email']")
++	    private WebElement userName;
++
++	 @FindBy(how = How.XPATH, using = "//*[@id='pass']")
++	    private WebElement passWord;
++	 
++	 @FindBy(how = How.XPATH, using = "//*[@id='u_0_n']")
++	    private WebElement clickOnLogin;
++
++	public void typeUserName(String text) {
++        // We continue using the element just as before
++		userName.sendKeys(text);
++		System.out.println("I got the user ID");
++        
++    }
++	public void typePassword(String text) {
++        // We continue using the element just as before
++		passWord.sendKeys(text);
++		System.out.println("I got the Password");
++        
++    }
++	public void hitOntheButton() {
++        // We continue using the element just as before
++		clickOnLogin.click();
++		System.out.println("already click on the button");
++        
++    }
++} 
+\ No newline at end of file
+diff --git a/pageFactoryJavaSelenium/src/main/java/pageObjectPattern/MainPage.java b/pageFactoryJavaSelenium/src/main/java/pageObjectPattern/MainPage.java
+new file mode 100644
+index 0000000..c228bfd
+--- /dev/null
++++ b/pageFactoryJavaSelenium/src/main/java/pageObjectPattern/MainPage.java
+@@ -0,0 +1,52 @@
++package pageObjectPattern;
++
++import org.openqa.selenium.NoSuchElementException;
++import org.openqa.selenium.WebDriver;
++import org.openqa.selenium.WebElement;
++import org.openqa.selenium.support.FindBy;
++import org.openqa.selenium.support.How;
++import org.openqa.selenium.support.ui.LoadableComponent;
++
++
++
++public class MainPage extends LoadableComponent<MainPage>
++{
++	
++	private final WebDriver driver;
++	public MainPage(WebDriver driver)
++	{
++		this.driver=driver;
++	}
++
++
++	// Find all the element in this page
++	@FindBy(how= How.XPATH, using="//a[@id='theshop']")
++	private WebElement theShop;
++
++	
++	@Override
++	protected void load() {
++		
++		
++		driver.get("http://www.facebook.com/");
++
++		
++	}
++
++	@Override
++	protected void isLoaded() throws Error {
++    try {
++    	
++		
++	} catch (NoSuchElementException  e) {
++		// TODO: handle exception
++//		fail("No element found");
++		e.getMessage();
++	}
++    
++		 System.out.println("This is end of the isLoaded method");
++	}
++
++	
++
++}
+diff --git a/pageFactoryJavaSelenium/src/test/java/pageObjectPattern/UsingGoogleSearchPage.java b/pageFactoryJavaSelenium/src/test/java/pageObjectPattern/UsingGoogleSearchPage.java
+new file mode 100644
+index 0000000..f6e4399
+--- /dev/null
++++ b/pageFactoryJavaSelenium/src/test/java/pageObjectPattern/UsingGoogleSearchPage.java
+@@ -0,0 +1,28 @@
++package pageObjectPattern;
++
++import org.openqa.selenium.WebDriver;
++import org.openqa.selenium.WebElement;
++import org.openqa.selenium.firefox.FirefoxDriver;
++import org.openqa.selenium.htmlunit.HtmlUnitDriver;
++import org.openqa.selenium.phantomjs.PhantomJSDriver;
++import org.openqa.selenium.support.PageFactory;
++
++public class UsingGoogleSearchPage {
++    public static void main(String[] args) {
++        // Create a new instance of a driver
++//        WebDriver driver = new HtmlUnitDriver();
++    	WebDriver driver = new PhantomJSDriver();
++
++        // Navigate to the right place
++        driver.get("http://www.facebook.com/");
++        System.out.println("the browser launching");
++
++        // Create a new instance of the search page class
++        // and initialise any WebElement fields in it.
++        GoogleSearchPage page = PageFactory.initElements(driver, GoogleSearchPage.class);
++
++        page.typeUserName("Asaduzaman");
++        page.typePassword("934875943");
++        page.hitOntheButton();
++    }
++} 
+\ No newline at end of file
+diff --git a/pageFactoryJavaSelenium/target/classes/META-INF/MANIFEST.MF b/pageFactoryJavaSelenium/target/classes/META-INF/MANIFEST.MF
+new file mode 100644
+index 0000000..33a8877
+--- /dev/null
++++ b/pageFactoryJavaSelenium/target/classes/META-INF/MANIFEST.MF
+@@ -0,0 +1,5 @@
++Manifest-Version: 1.0
++Build-Jdk: 1.7.0_51
++Built-By: azaman
++Created-By: Maven Integration for Eclipse
++
+diff --git a/pageFactoryJavaSelenium/target/classes/META-INF/maven/pageObject/pageObjectPattern/pom.properties b/pageFactoryJavaSelenium/target/classes/META-INF/maven/pageObject/pageObjectPattern/pom.properties
+new file mode 100644
+index 0000000..3324606
+--- /dev/null
++++ b/pageFactoryJavaSelenium/target/classes/META-INF/maven/pageObject/pageObjectPattern/pom.properties
+@@ -0,0 +1,7 @@
++#Generated by Maven Integration for Eclipse
++#Sat Jan 17 01:52:46 EST 2015
++version=0.0.1-SNAPSHOT
++groupId=pageObject
++m2e.projectName=pageObjectPattern
++m2e.projectLocation=C\:\\Users\\azaman\\workspace\\pageObjectPattern
++artifactId=pageObjectPattern
+diff --git a/pageFactoryJavaSelenium/target/classes/META-INF/maven/pageObject/pageObjectPattern/pom.xml b/pageFactoryJavaSelenium/target/classes/META-INF/maven/pageObject/pageObjectPattern/pom.xml
+new file mode 100644
+index 0000000..e5721ad
+--- /dev/null
++++ b/pageFactoryJavaSelenium/target/classes/META-INF/maven/pageObject/pageObjectPattern/pom.xml
+@@ -0,0 +1,18 @@
++<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
++  <modelVersion>4.0.0</modelVersion>
++  <groupId>pageObject</groupId>
++  <artifactId>pageObjectPattern</artifactId>
++  <version>0.0.1-SNAPSHOT</version>
++  <dependencies>
++  	<dependency>
++  		<groupId>org.seleniumhq.selenium</groupId>
++  		<artifactId>selenium-java</artifactId>
++  		<version>2.42.2</version>
++  	</dependency>
++  	<dependency>
++  		<groupId>junit</groupId>
++  		<artifactId>junit</artifactId>
++  		<version>4.12-beta-1</version>
++  	</dependency>
++  </dependencies>
++</project>
+\ No newline at end of file
+diff --git a/pageFactoryJavaSelenium/target/classes/pageObjectPattern/GoogleSearchPage.class b/pageFactoryJavaSelenium/target/classes/pageObjectPattern/GoogleSearchPage.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..f7c3eea960ef70ee1ded121cb3b3536eeeace144
+GIT binary patch
+literal 1390
+zcmah|c~28T6#q?IXn~cZ2m+!MM7fmpzVP5uF*edzEE;0Sw4Jnr+nKUEEB0e)j7Agv
+z0DdUrn^K`D!aqAZ^WOU%@6G)D_3a0MD|i$~gkh}8OJX&@B?>0PjS;?bpJ-k3L{@OW
+zP|i>^ju=Dt7JtWGkE@cqo6V321K~gC6~T~7Yro{`s!-e94TL9@3@h%s$UpK#MJO}J
+zF!&-=Mpi^l1~Tu71*Np%Mrsu>j2~Jagw?9{jr&-t;$n>;qGi3qFnVP2ir%5jmRFgD
+zwG~>!K&ld{ciriYd0D(aAu3#Y6K_a;l?TDP_KOT%dr^C4gHFMdg}19JtxHlhmxr5|
+zH<it3y(g744@lJHRE{CGq>G{*QS>`VqL(n!Qi<nbB`^FnPJS7ZX<gu6j{DN?8;3Dd
+zmh}c4KL)bpm|9i5-0OPZWO{!pS>uz{xv5+m7|uFqL2Dc-hW`DOr84)kVmlP7AUZIH
+z@i@*=?$M)ja2^+^U4c-=XQD=8hbK3hc$-1%?30*|W9q<-$<_iRDh_6Fks78$!_c=2
+zA+?(!-G<Z)UYSc^mZ9fqs-#WIlts$ku+-D#c3j5QIIb}C*4-Sea&Qg94DqT3@@QN!
+zBi<85vPos5JB=1*Xv{k_dfTeo4m#1Az+EcXC;pSc&{>vdRgsv*&={?3$$baiXtf=D
+z=wRMXyQO|#5?Ew7%{{VGtflHlDXr>8^7Ued_N)&5f_N<Ljp+OPrOjG*7$u4*J<%v4
+zc8au%(=JJCf==25+R*_gzzN!s^#8`YC{8;68}C7kVsu;Sdy*JjS{bb^(_hf{fqo)5
+zMPCa5q8^~HvzvfH4AG9vVwk?RI7d<=v<^*w!kO52jJ%G{WWQoGf{&O;Uiu7oAF;D;
+zZvZ`nGe{T~xqr91flN5KjvIu{aPv@(TmNv}IfUaZaf}e==rJ5~drep-9oBD>eBApA
+ddf-<7!Xen>XrrgmgNdfjBpdn}mIxz)<=?l5Eqnj~
+
+literal 0
+HcmV?d00001
+
+diff --git a/pageFactoryJavaSelenium/target/classes/pageObjectPattern/MainPage.class b/pageFactoryJavaSelenium/target/classes/pageObjectPattern/MainPage.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..16b068408d328d32bb729daf4eba70b861ff2c82
+GIT binary patch
+literal 1219
+zcmaJ=YflqF6g^Xl+m_{F5d;J&h*FAn!52!AhzQ|B)y9%)V*Idehjy?#v+mAP`B@qt
+z(GUIrf0Xg=Qc^XAWV7?Q=bm$4^XvDIp8!^|ZXm`m<=PGYqI$?{x@2q3J!w6&g)Gsn
+zfjGm8@*0+MxqNS1K5ua;0>|<L*Hxaj0$~-EUAL<(zO5WrNiH?Rg}Nt>xW_PC?B)E5
+zSD!|J0)wHOyxdeSL*^{(PK!H4OW?_ufz-m`72yj~+>%mhTMH$9hJ~K)r*ZBIS$}d&
+z6n#zAW|%t{yr<fP?0;R_+TWu!@P%wJq%F&S^H|g$EmFung}nHdGTjhT=uL+CY){H=
+zs!J7y__nI^6#8(<#0bVHn(R^~35Lri`f-6_xF{rl9ynF*?T0lb)uO7|t%~i5@Z7nK
+z>!zTTr;BH|juMEss51#%WteDc?XFu^yWP$o*fm~N>RrC39BTj>%o~_vm^rsmCaz(D
+z!fkNs?pU^XXdl^D%a#qRtUanuA<Qlz{BRa{oguaJp~l^)GX}DhSJz?3^OToF4mS-f
+zGmLaC<zruS$HXn<NlFEw)QOT%R*7UZiE-O0B(OpS-=`X6=;N}UQ3n}n3Y|^@$T(a#
+zRXv5<xNG1J!)T=PFO7+NVNQk{GPfiJT~>it<GUiP`{3yt$cL^B$+BojTL&K5N<CYB
+zI%>V1#Kw7@+ALs>W}uJWWDMzW5Tc!d1l=ZSpQbfMwgC<kgBbELOlYbdF48|uh+VSA
+zXieq5VKle=1>+whjtTk?Ma(0J6EcZWOw!%>2^v$lLMQTzRB2=|jj;~rI$;>u%-m;;
+zr)R!nHij;17!NRu0nA5?<_WgL7{_(uiQxue;$&HjqFn1RCO=^*ZGFY+|8y3myz&=a
+RvO^cceIkls4G*IA;UAoIDYO6p
+
+literal 0
+HcmV?d00001
+
+diff --git a/pageFactoryJavaSelenium/target/test-classes/pageObjectPattern/UsingGoogleSearchPage.class b/pageFactoryJavaSelenium/target/test-classes/pageObjectPattern/UsingGoogleSearchPage.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..635a8a8e609d2681e0990bfbc9131e48642536fb
+GIT binary patch
+literal 1213
+zcma)5+foxj5Iw_flV#-+1QA3aq9hQqa+6CC<!Y4`AypA9%cn^)CX2f}>+XaU{(~Q*
+z58$QB^4X8F>`g2XOqIU$T)IzB_nFf_et!7|U=}+XS{NohUKaa>BT-a2u9Way^B}O?
+z@)Ie`w#W<a7b`gm(a^@wbHtCiX>+%1HXsZgYnE%Nb%xeN@{plzOO}L=RzwZ7ql2M4
+zYq?^t>J)_koEL1t5X;IUw-32*h3DUwZK`4g49V<&mXo2U9B#P`1BqAJi?Z^{r{Xio
+zLk+zQGtw`c(i84mZU({@u2pqRufkm=ouk0aHFi()+rD)yd>uWAMsS^Bu%eW=YMQlL
+zE&ZAoMM26p>7sPZP7GjB!wrU!W~pC@LL-%dn;0Ta%0e;pCz=%)#Vy>{Fmj32{7ImM
+zV_+0xgqGD1-2hwC%u#EK8Wh~gL=Y#Js)(_IFKdDD$8278ixp~K#{}+axXaL2=jAfe
+zz+_mN=7q^@S3{B^{x|7YzhB2RW;CQoFwGhds-7o(Wrj-G<wYg^69Z|O3`QuA9a}iU
+zRrJBziEK0cIdPdksM@l55M+{n+%!Z-&CfFE8v!p>-*Jb#Iue*Sun;z8s1r{d5FvZq
+z5fMCKh_1{pEH5ptEX;>-%LZ1?<8t&sP5PzKkuk6q3bw0asePB2-K;7lNnmZ<FH_}x
+zO=L#$FV&^PF#3<aC{M^T!$cE_UuB!rt><OcFN$3&9GRh}Bbg4r7vmtM&_Dw%w4<3L
+ztI^4%mC@Qhb%w}?x?3k3x&a-XWQ|4ut=H%jMHjm1CIr8yWMR_zujqMsMk6~N>-&uU
+z7JS5TZ2S~=reldunEH;yvsCQ<DdtkK#ZxS$PO*CNR2&gX(M7hGCM$+P8lE`W1Pw<T
+lLzu&Gy^OKOQ+SAVijR=e9^o++5+~dSHtT(Dk*5XQzW@&THs1gM
+
+literal 0
+HcmV?d00001
+
+-- 
+1.8.4.msysgit.0
+
